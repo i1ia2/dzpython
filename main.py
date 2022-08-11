@@ -107,7 +107,7 @@ cool_Lecturer.courses_attached += ['Python']
 cool_Lecturer.courses_attached += ['git']
 
 best_student.rate_student(cool_Lecturer, 'git', 10)
-best_student.rate_student(cool_Lecturer, 'git', 6)
+best_student.rate_student(cool_Lecturer, 'git', 8)
 best_student.rate_student(cool_Lecturer, 'git', 8)
 
 cool_Lecturer.rate_hwe(best_student, 'Python', 10)
@@ -136,8 +136,36 @@ best_student.rate_student(two_lektor, 'git', 8)
 
 hew_revier = Reviewer('Джек', 'Воробей')
 
-print(f"{best_student}\nЛучший студент в аккадемии:{best_student > dark_student}\n")
+spisok_students = [best_student, dark_student]
 
-print(f'{cool_Lecturer}\nЛучший лектор в аккадемии:{cool_Lecturer > two_lektor}\n' )
+def podscet(spisok_students,course):
+    total = 0
+    for students in spisok_students:
+        for curs, ocenki in students.grades.items():
+            if curs == course:
+                total += sum(ocenki) / len(ocenki)
+    return total / len(spisok_students)
 
-print(hew_revier)
+spisok_lektors = [two_lektor, cool_Lecturer]
+
+def ocenki_lektorov(spisok_lektors, course):
+    totol = 0
+    for lektors in spisok_lektors:
+        for curses, ocenka in lektors.lectors_grade.items():
+            if curses == course:
+                totol += sum(ocenka) / len(ocenka)
+    return totol / len(spisok_lektors)
+
+
+print(f"Средние значени оценок Лекторов {ocenki_lektorov(spisok_lektors, 'git',)}")
+
+
+print(f"Средние значение оценок студентов {podscet(spisok_students, 'Python')}")
+
+
+
+# print(f"{best_student}\nЛучший студент в аккадемии:{best_student > dark_student}\n")
+#
+# print(f'{cool_Lecturer}\nЛучший лектор в аккадемии:{cool_Lecturer > two_lektor}\n' )
+#
+# print(hew_revier)
